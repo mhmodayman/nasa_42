@@ -1,34 +1,34 @@
 <<<<<<<<<<<<<<<<<  42: Spacecraft Description File   >>>>>>>>>>>>>>>>>
 Simple generic S/C            !  Description
-"S/C"                         !  Label
+"S/C 0"                       !  Label
 GenScSpriteAlpha.ppm          !  Sprite File Name
-PROTOTYPE_FSW                 !  Flight Software Identifier
-0.2                           !  FSW Sample Time, sec
+PASSIVE FSW                   !  Flight Software Identifier
+0.1                           !  FSW Sample Time, sec
 ************************* Orbit Parameters ****************************
 FIXED                         !  Orbit Prop FIXED, EULER_HILL, ENCKE, or COWELL
 CM                            !  Pos of CM or ORIGIN, wrt F
 0.0  0.0  0.0                 !  Pos wrt Formation (m), expressed in F
 0.0  0.0  0.0                 !  Vel wrt Formation (m/s), expressed in F
 *************************** Initial Attitude ***************************
-NAN                           ! Ang Vel wrt [NL], Att [QA] wrt [NLF]
-0.0    0.0    0.0             ! Ang Vel (deg/sec)
+LAL                           ! Ang Vel wrt [NL], Att [QA] wrt [NLF]
+4.583662  -1.145916   1.718873            ! Ang Vel (deg/sec)
 0.0    0.0    0.0    1.0      ! Quaternion
-60.0  50.0   40.0    213      ! Angles (deg) & Euler Sequence
+0.0    0.0    0.0    123      ! Angles (deg) & Euler Sequence
 ***************************  Dynamics Flags  ***************************
 GAUSS_ELIM                    ! Solve Dynamics by GAUSS_ELIM or ORDER_N
 FALSE                         ! Compute Constraint Forces and Torques
 REFPT_CM                      ! Mass Props referenced to REFPT_CM or REFPT_JOINT
 FALSE                         ! Flex Active
 FALSE                         ! Include 2nd Order Flex Terms
-NONE                        ! Shaker File Name
-2.0                           ! Drag Coefficient
+NONE                          ! Shaker File Name
+0.0                           ! Drag Coefficient
 ************************************************************************
 ************************* Body Parameters ******************************
 ************************************************************************
 1                             ! Number of Bodies
 ================================ Body 0 ================================
-200.0                         ! Mass
-100.0  200.0  300.0           ! Moments of Inertia (kg-m^2)
+2.6                           ! Mass
+0.9  0.9  0.3                 ! Moments of Inertia (kg-m^2)
 0.0  0.0  0.0                 ! Products of Inertia (xy,xz,yz)
 0.0  0.0  0.0                 ! Location of mass center, m
 0.0  0.0  0.0                 ! Constant Embedded Momentum (Nms)

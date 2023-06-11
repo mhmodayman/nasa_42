@@ -85,6 +85,41 @@ void ReadFromCmd(void)
                SC[Isc].RequestStateRefresh = 1;
             }
 
+            if (sscanf(line,"SC[%ld].wbl_B = %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2]) == 4) {
+               SC[Isc].wbl_B[0] = DbleVal[0];
+               SC[Isc].wbl_B[1] = DbleVal[1];
+               SC[Isc].wbl_B[2] = DbleVal[2];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
+            if (sscanf(line,"SC[%ld].A_B = %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2]) == 4) {
+               SC[Isc].A_B[0] = DbleVal[0];
+               SC[Isc].A_B[1] = DbleVal[1];
+               SC[Isc].A_B[2] = DbleVal[2];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
+            if (sscanf(line,"SC[%ld].Q_B = %le %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2],
+               &DbleVal[3]) == 5) {
+               SC[Isc].Q_B[0] = DbleVal[0];
+               SC[Isc].Q_B[1] = DbleVal[1];
+               SC[Isc].Q_B[2] = DbleVal[2];
+               SC[Isc].Q_B[3] = DbleVal[3];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
             if (sscanf(line,"SC[%ld].AC.svb = %le %le %le",
                &Isc,
                &DbleVal[0],

@@ -628,6 +628,11 @@ struct SCType {
    double bvb[3]; /* Magfield [[Tesla]], expressed in SC.B[0] [~=~] */
    double Hvn[3]; /* Total SC angular momentum, Nms, expressed in N */
    double Hvb[3]; /* Total SC angular momentum [[Nms]], expressed in SC.B[0] [~=~] */
+
+   double wbl_B[3]; /* Angular velocity of B in L (rad/s) (expressed in B) [~=~] */
+   double A_B[3]; /* euler angles [Roll_B, Pitch_B, Yaw_B] of B in L (rad) (expressed in B) [~=~] */
+   double Q_B[4]; /* quaternion of B in L (expressed in B) [~=~] */
+
    long Eclipse;
    double AtmoDensity;
    double DragCoef;

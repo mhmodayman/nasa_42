@@ -1,8 +1,8 @@
 <<<<<<<<<<<<<<<<<  42: The Mostly Harmless Simulator  >>>>>>>>>>>>>>>>>
 ************************** Simulation Control **************************
-REAL                            !  Time Mode (FAST, REAL, or EXTERNAL)
+FAST                            !  Time Mode (FAST, REAL, or EXTERNAL)
 86400.0     0.1                 !  Sim Duration, Step Size [sec]
-1.0                             !  File Output Interval [sec]
+100000.0                        !  File Output Interval [sec]
 0                               !  RNG Seed
 FALSE                           !  Graphics Front End?
 Inp_Cmd.txt                     !  Command Script File Name
@@ -13,15 +13,15 @@ TRUE   Orb_LEO.txt              !  Input file name for Orb 0
 1                               !  Number of Spacecraft
 TRUE  0 SC_Simple.txt           !  Existence, RefOrb, Input file for SC 0
 ***************************** Environment  *****************************
-06 21 2014                      !  Date (UTC) (Month, Day, Year)
+01 01 2020                      !  Date (UTC) (Month, Day, Year)
 00 00 00.00                     !  Time (UTC) (Hr,Min,Sec)
 0.0                             !  Leap Seconds (sec)
-USER                            !  F10.7, Ap (USER, NOMINAL or TWOSIGMA)
+NOMINAL                         !  F10.7, Ap (USER, NOMINAL or TWOSIGMA)
 230.0                           !  If USER_DEFINED, enter desired F10.7 value
 100.0                           !  If USER_DEFINED, enter desired AP value
-IGRF                            !  Magfield (NONE,DIPOLE,IGRF)
+NONE                            !  Magfield (NONE,DIPOLE,IGRF)
 8   8                           !  IGRF Degree and Order (<=10)
-2   0                           !  Earth Gravity Model N and M (<=18)
+8   8                           !  Earth Gravity Model N and M (<=18)
 2   0                           !  Mars Gravity Model N and M (<=18)
 2   0                           !  Luna Gravity Model N and M (<=18)
 FALSE   FALSE                   !  Aerodynamic Forces & Torques (Shadows)
@@ -51,7 +51,7 @@ FALSE                           !  Earth-Moon
 FALSE                           !  Sun-Earth
 FALSE                           !  Sun-Jupiter
 ************************* Ground Stations ***************************
-5                                            ! Number of Ground Stations
+0                                            ! Number of Ground Stations
 TRUE  EARTH  -77.0  37.0  "GSFC"             ! Exists, World, Lng, Lat, Label
 TRUE  EARTH  -155.6 19.0  "South Point"      ! Exists, World, Lng, Lat, Label
 TRUE  EARTH  115.4 -29.0  "Dongara"          ! Exists, World, Lng, Lat, Label

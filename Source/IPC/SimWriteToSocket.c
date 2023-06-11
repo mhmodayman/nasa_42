@@ -5,9 +5,72 @@
 
 #include "42.h"
 
+void calcQuatInBFrame();
+void calcEulerInBFrame();
+void calcEulerRatesInBFrame();
+
+void calcQuatInBFrame()
+{
+   // SC[0].CLN:     DCM of L in N (or from N in L)
+   // SC.B[0].CN:    DCM of B in N (or from N to B)
+   // CLB:           DCM of L in B (or from B to L)
+   // CLB:           DCM of B in L (or from L to B)
+
+   double CBL[3][3];
+   MxMT(SC[0].B[0].CN, SC[0].CLN, CBL);  // CBN * (CLN)^T = CBN * CNL = CBL
+
+   // SC[0].Q_B  -- quaternion of B in L (expressed in B)
+   // scalar part is the last element in the vector
+
+   C2Q(CBL, SC[0].Q_B);
+}
+
+void calcEulerInBFrame()
+{
+   // SC[0].CLN:     DCM of L in N (or from N in L)
+   // SC.B[0].CN:    DCM of B in N (or from N to B)
+   // CLB:           DCM of L in B (or from B to L)
+   // CLB:           DCM of B in L (or from L to B)
+
+   double CBL[3][3];
+   MxMT(SC[0].B[0].CN, SC[0].CLN, CBL);  // CBN * (CLN)^T = CBN * CNL = CBL
+
+   // SC[0].A_B = [Roll_B, Pitch_B, Yaw_B]  [rad]
+   // Roll_B:  euler angle (roll)  of B in L (expressed in B)
+   // Pitch_B: euler angle (pitch) of B in L (expressed in B)
+   // Yaw_B:   euler angle (yaw)   of B in L (expressed in B)
+
+   C2A(321, CBL, &SC[0].A_B[2], &SC[0].A_B[1], &SC[0].A_B[0]);
+}
+
+void calcEulerRatesInBFrame()
+{
+   double CNB[3][3];
+   double wln_B[3];
+
+   // SC.B[0].CN:    DCM of B in N (or from N to B)
+   // CNB:           DCM of N in B (or from B to N)
+
+   MT(SC[0].B[0].CN, CNB);  // CBN^T = CNB
+
+   MxV(CNB, SC[0].wln, wln_B);  // omega of L in N (expressed in N) --> omega of L in N (expressed in B)
+
+   //SC[0].B[0].wn: omega B in N, (expressed in B) (aka) wbn_B
+
+   SC[0].wbl_B[0] = SC[0].B[0].wn[0] - wln_B[0]; // wbn_B[0] - wln_B[0]  [rad/s]
+   SC[0].wbl_B[1] = SC[0].B[0].wn[1] - wln_B[1]; // wbn_B[1] - wln_B[1]  [rad/s]
+   SC[0].wbl_B[2] = SC[0].B[0].wn[2] - wln_B[2]; // wbn_B[2] - wln_B[2]  [rad/s]
+}
+
 /**********************************************************************/
 void WriteToSocket(SOCKET Socket,  char **Prefix, long Nprefix, long EchoEnabled)
 {
+
+      /*********************************************************************/
+               calcQuatInBFrame();        // called on each TX transmission
+               calcEulerInBFrame();       // called on each TX transmission
+               calcEulerRatesInBFrame();  // called on each TX transmission
+      /*********************************************************************/
 
       long Isc,Iorb,Iw,Ipfx,i;
       char AckMsg[5] = "Ack\n";
@@ -82,6 +145,43 @@ void WriteToSocket(SOCKET Socket,  char **Prefix, long Nprefix, long EchoEnabled
                   SC[Isc].Hvb[0],
                   SC[Isc].Hvb[1],
                   SC[Isc].Hvb[2]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+                  if (EchoEnabled) printf("%s",line);
+               }
+
+               sprintf(line,"SC[%ld].wbl_B = %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].wbl_B[0],
+                  SC[Isc].wbl_B[1],
+                  SC[Isc].wbl_B[2]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+                  if (EchoEnabled) printf("%s",line);
+               }
+
+               sprintf(line,"SC[%ld].A_B = %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].A_B[0],
+                  SC[Isc].A_B[1],
+                  SC[Isc].A_B[2]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+                  if (EchoEnabled) printf("%s",line);
+               }
+
+               sprintf(line,"SC[%ld].Q_B = %18.12le %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].Q_B[0],
+                  SC[Isc].Q_B[1],
+                  SC[Isc].Q_B[2],
+                  SC[Isc].Q_B[3]);
                if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
                   LineLen = strlen(line);
                   memcpy(&Msg[MsgLen],line,LineLen);

@@ -1,19 +1,19 @@
 <<<<<<<<<<<<<<<<<  42: Spacecraft Description File   >>>>>>>>>>>>>>>>>
 Simple generic S/C            !  Description
-"S/C 0"                         !  Label
+"S/C 0"                       !  Label
 GenScSpriteAlpha.ppm          !  Sprite File Name
 CFS_FSW                       !  Flight Software Identifier
-0.2                           !  FSW Sample Time, sec
+1.0                           !  FSW Sample Time, sec
 ************************* Orbit Parameters ****************************
 FIXED                         !  Orbit Prop FIXED, EULER_HILL, ENCKE, or COWELL
 CM                            !  Pos of CM or ORIGIN, wrt F
-20.0  0.0  0.0                 !  Pos wrt Formation (m), expressed in F
+0.0  0.0  0.0                 !  Pos wrt Formation (m), expressed in F
 0.0  0.0  0.0                 !  Vel wrt Formation (m/s), expressed in F
 *************************** Initial Attitude ***************************
 LAL                           ! Ang Vel wrt [NL], Att [QA] wrt [NLF]
-0.0    0.0    0.0             ! Ang Vel (deg/sec)
+4.583662  -1.145916   1.718873            ! Ang Vel (deg/sec)
 0.0    0.0    0.0    1.0      ! Quaternion
-1.0    1.0    1.0    213      ! Angles (deg) & Euler Sequence
+0.0    0.0    0.0    123      ! Angles (deg) & Euler Sequence
 ***************************  Dynamics Flags  ***************************
 GAUSS_ELIM                    ! Solve Dynamics by GAUSS_ELIM or ORDER_N
 FALSE                         ! Compute Constraint Forces and Torques
@@ -21,29 +21,19 @@ REFPT_CM                      ! Mass Props referenced to REFPT_CM or REFPT_JOINT
 FALSE                         ! Flex Active
 FALSE                         ! Include 2nd Order Flex Terms
 NONE                        ! Shaker File Name
-2.0                           ! Drag Coefficient
+0.0                           ! Drag Coefficient
 ************************************************************************
 ************************* Body Parameters ******************************
 ************************************************************************
-2                             ! Number of Bodies
+1                             ! Number of Bodies
 ================================ Body 0 ================================
-1000.0                        ! Mass
-1000.0  2000.0  3000.0        ! Moments of Inertia (kg-m^2)
+2.6                           ! Mass
+0.9  0.9  0.3                 ! Moments of Inertia (kg-m^2)
 0.0  0.0  0.0                 ! Products of Inertia (xy,xz,yz)
 0.0  0.0  0.0                 ! Location of mass center, m
 0.0  0.0  0.0                 ! Constant Embedded Momentum (Nms)
 0.0  0.0  0.0                 ! Constant Embedded Magnetic Dipole (A-m^2)
-MDLSat_MainBody.obj           ! Geometry Input File Name
-NONE                          ! Node File Name
-NONE                          ! Flex File Name
-================================ Body 1 ================================
-100.0                         ! Mass
-100.0  200.0  300.0           ! Moments of Inertia (kg-m^2)
-0.0  0.0  0.0                 ! Products of Inertia (xy,xz,yz)
-0.0  0.0  0.0                 ! Location of mass center, m
-0.0  0.0  0.0                 ! Constant Embedded Momentum (Nms)
-0.0  0.0  0.0                 ! Constant Embedded Magnetic Dipole (A-m^2)
-MDLSat_SolarArray.obj         ! Geometry Input File Name
+IonCruiser.obj                ! Geometry Input File Name
 NONE                          ! Node File Name
 NONE                          ! Flex File Name
 ************************************************************************
@@ -127,7 +117,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 ******************************* Gyro ************************************
 3                                ! Number of Gyro Axes
 ============================== Axis 0 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0  0.0  0.0                 ! Axis expressed in Body Frame
 1000.0                        ! Max Rate, deg/sec
 100.0                         ! Scale Factor Error, ppm
@@ -138,7 +128,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0.01                          ! Initial Bias (deg/hr)
 0                             ! Node
 ============================== Axis 1 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 0.0  1.0  0.0                 ! Axis expressed in Body Frame
 1000.0                        ! Max Rate, deg/sec
 100.0                         ! Scale Factor Error, ppm
@@ -149,7 +139,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0.01                          ! Initial Bias (deg/hr)
 0                             ! Node
 ============================== Axis 2 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 0.0  0.0  1.0                 ! Axis expressed in Body Frame
 1000.0                        ! Max Rate, deg/sec
 100.0                         ! Scale Factor Error, ppm
@@ -162,7 +152,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 *************************** Magnetometer ********************************
 3                             ! Number of Magnetometer Axes
 ============================== Axis 0 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0  0.0  0.0                 ! Axis expressed in Body Frame
 60.0E-6                       ! Saturation, Tesla
 0.0                           ! Scale Factor Error, ppm
@@ -170,7 +160,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 1.0E-8                        ! Noise, Tesla RMS
 0                             ! Node
 ============================== Axis 1 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 0.0  1.0  0.0                 ! Axis expressed in Body Frame
 60.0E-6                       ! Saturation, Tesla
 0.0                           ! Scale Factor Error, ppm
@@ -178,7 +168,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 1.0E-8                        ! Noise, Tesla RMS
 0                             ! Node
 ============================== Axis 2 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 0.0  0.0  1.0                 ! Axis expressed in Body Frame
 60.0E-6                       ! Saturation, Tesla
 0.0                           ! Scale Factor Error, ppm
@@ -188,7 +178,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 *********************** Coarse Sun Sensor *******************************
 8                             ! Number of Coarse Sun Sensors
 ============================== CSS 0 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0  1.0  1.0                 ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -196,7 +186,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 1 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0  1.0 -1.0                 ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -204,7 +194,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 2 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0 -1.0  1.0                 ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -212,7 +202,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 3 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0 -1.0 -1.0                 ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -220,7 +210,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 4 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 -1.0  1.0  1.0                ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -228,7 +218,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 5 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 -1.0  1.0 -1.0                ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -236,7 +226,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 6 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 -1.0 -1.0  1.0                ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -244,7 +234,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 0                             ! Body
 0                             ! Node
 ============================== CSS 7 ====================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 -1.0 -1.0 -1.0                ! Axis expressed in Body Frame
 90.0                          ! Half-cone Angle, deg
 1.0                           ! Scale Factor
@@ -254,7 +244,7 @@ PULSED                        ! Mode (PULSED or PROPORTIONAL)
 ************************* Fine Sun Sensor *******************************
 1                             ! Number of Fine Sun Sensors
 =============================== FSS 0 ===================================
-0.2                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 90.0   0.0   0.0  213         ! Mounting Angles (deg), Seq in Body
 Z_AXIS                        ! Boresight Axis X_AXIS, Y_AXIS, or Z_AXIS
 32.0   32.0                   ! X, Y FOV Size, deg
@@ -264,7 +254,7 @@ Z_AXIS                        ! Boresight Axis X_AXIS, Y_AXIS, or Z_AXIS
 ************************** Star Tracker *********************************
 1                             ! Number of Star Trackers
 =============================== ST 0 ====================================
-0.25                          ! Sample Time,sec
+1.0                           ! Sample Time,sec
 180.0  0.0  0.0  213            ! Mounting Angles (deg), Seq in Body
 Z_AXIS                        ! Boresight Axis X_AXIS, Y_AXIS, or Z_AXIS
 8.0   8.0                     ! X, Y FOV Size, deg
@@ -274,7 +264,7 @@ Z_AXIS                        ! Boresight Axis X_AXIS, Y_AXIS, or Z_AXIS
 ****************************** GPS **************************************
 1                             ! Number of GPS Receivers
 ============================= GPSR 0 ====================================
-0.25                          ! Sample Time,sec
+1.0                          ! Sample Time,sec
 4.0                           ! Position Noise, m RMS
 0.02                          ! Velocity Noise, m/sec RMS
 20.0E-9                       ! Time Noise, sec RMS
@@ -282,7 +272,7 @@ Z_AXIS                        ! Boresight Axis X_AXIS, Y_AXIS, or Z_AXIS
 *************************** Accelerometer *******************************
 0                             ! Number of Accel Axes
 ============================== Axis 0 ===================================
-0.1                           ! Sample Time,sec
+1.0                           ! Sample Time,sec
 1.0  0.0  0.0                 ! Axis expressed in Body Frame
 1.0                           ! Max Acceleration (m/s^2)
 0.0                           ! Scale Factor Error, ppm

@@ -96,6 +96,46 @@ void WriteToGmsec(GMSEC_ConnectionMgr ConnMgr,GMSEC_Status status,  char **Prefi
                   if (EchoEnabled) printf("%s",line);
                }
 
+               sprintf(line,"SC[%ld].wbl_B = %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].wbl_B[0],
+                  SC[Isc].wbl_B[1],
+                  SC[Isc].wbl_B[2]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+
+                  if (EchoEnabled) printf("%s",line);
+               }
+
+               sprintf(line,"SC[%ld].A_B = %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].A_B[0],
+                  SC[Isc].A_B[1],
+                  SC[Isc].A_B[2]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+
+                  if (EchoEnabled) printf("%s",line);
+               }
+
+               sprintf(line,"SC[%ld].Q_B = %18.12le %18.12le %18.12le %18.12le\n",
+                  Isc,
+                  SC[Isc].Q_B[0],
+                  SC[Isc].Q_B[1],
+                  SC[Isc].Q_B[2],
+                  SC[Isc].Q_B[3]);
+               if (!strncmp(line,Prefix[Ipfx],PfxLen)) {
+                  LineLen = strlen(line);
+                  memcpy(&Msg[MsgLen],line,LineLen);
+                  MsgLen += LineLen;
+
+                  if (EchoEnabled) printf("%s",line);
+               }
+
                sprintf(line,"SC[%ld].AC.ParmLoadEnabled = %ld\n",
                   Isc,
                   SC[Isc].AC.ParmLoadEnabled);

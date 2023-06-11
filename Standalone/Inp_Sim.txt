@@ -1,26 +1,25 @@
 <<<<<<<<<<<<<<<<<  42: The Mostly Harmless Simulator  >>>>>>>>>>>>>>>>>
 ************************** Simulation Control **************************
 FAST                            !  Time Mode (FAST, REAL, or EXTERNAL)
-20000.0   0.01                   !  Sim Duration, Step Size [sec]
-1.0                             !  File Output Interval [sec]
+86400.0   1.0                   !  Sim Duration, Step Size [sec]
+1000.0                          !  File Output Interval [sec]
 0                               !  RNG Seed
-TRUE                            !  Graphics Front End?
+FALSE                            !  Graphics Front End?
 Inp_Cmd.txt                     !  Command Script File Name
 **************************  Reference Orbits  **************************
 1                               !  Number of Reference Orbits
 TRUE   Orb_LEO.txt              !  Input file name for Orb 0
 *****************************  Spacecraft  *****************************
-2                               !  Number of Spacecraft
+1                               !  Number of Spacecraft
 TRUE  0 SC_CfsSat0.txt          !  Existence, RefOrb, Input file for SC 0
-TRUE  0 SC_CfsSat1.txt          !  Existence, RefOrb, Input file for SC 1
 ***************************** Environment  *****************************
-03 21 2016                      !  Date (UTC) (Month, Day, Year)
-12 00 00.00                     !  Time (UTC) (Hr,Min,Sec)
+01 01 2020                      !  Date (UTC) (Month, Day, Year)
+00 00 00.00                     !  Time (UTC) (Hr,Min,Sec)
 0.0                             !  Leap Seconds (sec)
-USER                            !  F10.7, Ap (USER, NOMINAL or TWOSIGMA)
+NOMINAL                         !  F10.7, Ap (USER, NOMINAL or TWOSIGMA)
 230.0                           !  If USER_DEFINED, enter desired F10.7 value
 100.0                           !  If USER_DEFINED, enter desired AP value
-IGRF                            !  Magfield (NONE,DIPOLE,IGRF)
+NONE                            !  Magfield (NONE,DIPOLE,IGRF)
 8   8                           !  IGRF Degree and Order (<=10)
 8   8                           !  Earth Gravity Model N and M (<=18)
 2   0                           !  Mars Gravity Model N and M (<=18)
@@ -52,7 +51,7 @@ FALSE                           !  Earth-Moon
 FALSE                           !  Sun-Earth
 FALSE                           !  Sun-Jupiter
 ************************* Ground Stations ***************************
-5                                            ! Number of Ground Stations
+0                                            ! Number of Ground Stations
 TRUE  EARTH  -77.0  37.0  "GSFC"             ! Exists, World, Lng, Lat, Label
 TRUE  EARTH  -155.6 19.0  "South Point"      ! Exists, World, Lng, Lat, Label
 TRUE  EARTH  115.4 -29.0  "Dongara"          ! Exists, World, Lng, Lat, Label

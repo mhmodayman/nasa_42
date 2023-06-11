@@ -25,7 +25,7 @@ void ReadFromSocket(SOCKET Socket, long EchoEnabled)
 
       long Year,doy,Hour,Minute;
       double Second;
-      
+
       memset(Msg,'\0',16384);
       NumBytes = recv(Socket,Msg,16384,0);
       if (NumBytes <= 0) return; /* Bail out if no message */
@@ -99,6 +99,41 @@ void ReadFromSocket(SOCKET Socket, long EchoEnabled)
                SC[Isc].Hvb[0] = DbleVal[0];
                SC[Isc].Hvb[1] = DbleVal[1];
                SC[Isc].Hvb[2] = DbleVal[2];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
+            if (sscanf(line,"SC[%ld].wbl_B = %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2]) == 4) {
+               SC[Isc].wbl_B[0] = DbleVal[0];
+               SC[Isc].wbl_B[1] = DbleVal[1];
+               SC[Isc].wbl_B[2] = DbleVal[2];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
+            if (sscanf(line,"SC[%ld].A_B = %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2]) == 4) {
+               SC[Isc].A_B[0] = DbleVal[0];
+               SC[Isc].A_B[1] = DbleVal[1];
+               SC[Isc].A_B[2] = DbleVal[2];
+               SC[Isc].RequestStateRefresh = 1;
+            }
+
+            if (sscanf(line,"SC[%ld].Q_B = %le %le %le %le",
+               &Isc,
+               &DbleVal[0],
+               &DbleVal[1],
+               &DbleVal[2],
+               &DbleVal[3]) == 5) {
+               SC[Isc].Q_B[0] = DbleVal[0];
+               SC[Isc].Q_B[1] = DbleVal[1];
+               SC[Isc].Q_B[2] = DbleVal[2];
+               SC[Isc].Q_B[3] = DbleVal[3];
                SC[Isc].RequestStateRefresh = 1;
             }
 
@@ -1180,6 +1215,7 @@ void ReadFromSocket(SOCKET Socket, long EchoEnabled)
          if (!strncmp(line,"[EOF]",5)) {
             Done = 1;
             sprintf(line,"[EOF] reached\n");
+            printf("TRUE - [EOF] reached\n");
          }
          if (Imsg >= 16383) {
             Done = 1;
